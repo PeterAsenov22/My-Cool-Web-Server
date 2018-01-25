@@ -4,7 +4,7 @@
     using Data;
     using Server.Http.Contracts;
     using Infrastructure;
-    using Models;
+    using ViewModels;
     using Server.Http.Response;
 
     public class ShoppingController : Controller

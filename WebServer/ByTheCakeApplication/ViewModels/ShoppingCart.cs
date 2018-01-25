@@ -1,4 +1,4 @@
-﻿namespace WebServer.ByTheCakeApplication.Models
+﻿namespace WebServer.ByTheCakeApplication.ViewModels
 {
     using System.Collections.Generic;
 

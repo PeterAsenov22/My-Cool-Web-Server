@@ -179,11 +179,11 @@
                 return;
             }
 
-            var pairs = query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
+            var pairs = query.Split(new[] { '&' });
 
             foreach (var pair in pairs)
             {
-                var pairElements = pair.Split(new[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
+                var pairElements = pair.Split(new[] { '=' });
 
                 if (pairElements.Length != 2)
                 {

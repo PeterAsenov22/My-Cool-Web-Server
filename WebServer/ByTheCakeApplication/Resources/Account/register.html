@@ -1,0 +1,16 @@
+﻿<h1>Register</h1>
+<br/>
+<form method="post">
+    Username <input type="text" name="username" placeholder="Username"/><br/>
+    Password <input type="password" name="password" placeholder="Password"/><br/>
+    Confirm Password <input type="password" name="confirm-password" placeholder="Confirm Password" /><br />
+    <input type="submit" value="Register"/>
+</form>
+
+<div style="display: {{{showError}}}; color: red">
+    {{{error}}}
+</div>
+
+<br />
+
+Already have an account? <a href="/login">Login here!</a>

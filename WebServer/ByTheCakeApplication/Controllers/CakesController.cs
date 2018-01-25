@@ -4,7 +4,7 @@
     using System.Linq;
     using Infrastructure;
     using Server.Http.Contracts;
-    using Models;
+    using ViewModels;
     using Data;
 
     public class CakesController : Controller
