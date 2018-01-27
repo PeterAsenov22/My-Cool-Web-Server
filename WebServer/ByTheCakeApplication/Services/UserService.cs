@@ -56,5 +56,14 @@
                     .FirstOrDefault();
             }
         }
+
+        public int GetUserId(string username)
+        {
+            using (var db = new ByTheCakeDbContext())
+            {
+               return db.Users
+                    .First(u => u.Username == username).Id;
+            }
+        }
     }
 }

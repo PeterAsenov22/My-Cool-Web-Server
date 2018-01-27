@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace WebServer.ByTheCakeApplication.Controllers
+﻿namespace WebServer.ByTheCakeApplication.Controllers
 {
+    using System;
     using Server.Http;
     using Infrastructure;
     using Server.Http.Contracts;
@@ -13,6 +12,10 @@ namespace WebServer.ByTheCakeApplication.Controllers
 
     public class AccountController : Controller
     {
+        private const string RegisterView = @"account\register";
+        private const string LoginView = @"account\login";
+        private const string ProfileView = @"account\profile";
+
         private readonly IUserService users;
 
         public AccountController()
@@ -24,7 +27,7 @@ namespace WebServer.ByTheCakeApplication.Controllers
         {
             this.SetDefaultViewData();
 
-            return this.FileViewResponse(@"account\register");
+            return this.FileViewResponse(RegisterView);
         }
 
         public IHttpResponse Register(IHttpRequest request, RegisterUserViewModel model)
@@ -35,10 +38,9 @@ namespace WebServer.ByTheCakeApplication.Controllers
                 model.Password.Length < 3 ||
                 model.Password != model.ConfirmPassword)
             {
-                this.ViewData["showError"] = "block";
-                this.ViewData["error"] = "Invalid user details.";
+                this.AddError("Invalid user details.");
 
-                return this.FileViewResponse(@"account\register");
+                return this.FileViewResponse(RegisterView);
             }
 
             var success = this.users.Create(model.Username, model.Password);
@@ -51,10 +53,9 @@ namespace WebServer.ByTheCakeApplication.Controllers
             }
             else
             {
-                this.ViewData["showError"] = "block";
-                this.ViewData["error"] = "This username is taken.";
+                this.AddError("This username is taken.");
 
-                return this.FileViewResponse(@"account\register");
+                return this.FileViewResponse(RegisterView);
             }
         }
 
@@ -62,18 +63,17 @@ namespace WebServer.ByTheCakeApplication.Controllers
         {
             this.SetDefaultViewData();
 
-            return this.FileViewResponse(@"account\login");
+            return this.FileViewResponse(LoginView);
         }
 
         public IHttpResponse Login(IHttpRequest req, LoginUserViewModel model)
         {
             if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
             {
-                this.ViewData["error"] = "You have empty fields.";
-                this.ViewData["showError"] = "block";
+                this.AddError("You have empty fields.");
                 this.ViewData["authDisplay"] = "none";
 
-                return this.FileViewResponse(@"account\login");
+                return this.FileViewResponse(LoginView);
             }
 
             var success = users.Find(model.Username, model.Password);
@@ -85,11 +85,10 @@ namespace WebServer.ByTheCakeApplication.Controllers
             }
             else
             {
-                this.ViewData["error"] = "Invalid user details.";
-                this.ViewData["showError"] = "block";
+                this.AddError("Invalid user details.");
                 this.ViewData["authDisplay"] = "none";
 
-                return this.FileViewResponse(@"account\login");
+                return this.FileViewResponse(LoginView);
             }
         }
 
@@ -120,7 +119,7 @@ namespace WebServer.ByTheCakeApplication.Controllers
             this.ViewData["registrationDate"] = profile.RegistrationDate.ToShortDateString();
             this.ViewData["totalOrders"] = profile.TotalOrders.ToString();
 
-            return this.FileViewResponse(@"account\profile");
+            return this.FileViewResponse(ProfileView);
         }
 
         private void SetDefaultViewData()
