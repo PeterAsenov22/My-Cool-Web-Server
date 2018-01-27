@@ -33,7 +33,13 @@
                 return new NotFoundResponse();
             }
 
-            request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey).ProductIds.Add(idNumber);
+            var shoppingCart = request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
+            if (!shoppingCart.Products.ContainsKey(idNumber))
+            {
+                shoppingCart.Products[idNumber] = 0;
+            }
+
+            shoppingCart.Products[idNumber]++;
 
             var redirectUrl = "/search";
 
@@ -51,7 +57,7 @@
         {
             var shoppingCart = request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
 
-            if (!shoppingCart.ProductIds.Any())
+            if (!shoppingCart.Products.Any())
             {
                 this.ViewData["cartItems"] = "<div>No items in your cart</div>";
                 this.ViewData["totalCost"] = "0.00";
@@ -61,12 +67,12 @@
                 decimal totalCost = 0;
                 var cartItems = string.Empty;
 
-                var orders = this.products.FindProductsInCart(shoppingCart.ProductIds);
+                var orders = this.products.FindProductsInCart(shoppingCart.Products);
 
                 foreach (var product in orders)
                 {
-                    cartItems += $"<div>{product.Name} - ${product.Price:F2}</div><br />";
-                    totalCost += product.Price;
+                    cartItems += $"<div>{product.Name} - ${product.Price:F2} - Quantity: {product.Quantity}</div><br />";
+                    totalCost += product.Price * product.Quantity;
                 }
 
                 this.ViewData["cartItems"] = cartItems;
@@ -82,14 +88,14 @@
             var shoppingCart = request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
 
             var userId = this.users.GetUserId(username);
-            var productsIds = shoppingCart.ProductIds;
+            var productsToBuy = shoppingCart.Products;
 
-            if (!productsIds.Any())
+            if (!productsToBuy.Any())
             {
                 return new RedirectResponse("/");
             }
 
-            this.shopping.CreateOrder(userId,productsIds);
+            this.shopping.CreateOrder(userId,productsToBuy);
 
             shoppingCart.Clear();
 

@@ -13,6 +13,6 @@
 
         bool Exists(int id);
 
-        IEnumerable<ProductInCartViewModel> FindProductsInCart(IEnumerable<int> productsIds);
+        IEnumerable<ProductInCartViewModel> FindProductsInCart(Dictionary<int,int> products);
     }
 }

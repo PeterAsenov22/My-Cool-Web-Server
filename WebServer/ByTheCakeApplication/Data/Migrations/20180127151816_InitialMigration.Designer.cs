@@ -6,9 +6,10 @@
     using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Migrations;
     using System;
+    using WebServer.ByTheCakeApplication.Data;
 
     [DbContext(typeof(ByTheCakeDbContext))]
-    [Migration("20180123145523_InitialMigration")]
+    [Migration("20180127151816_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +40,8 @@
                     b.Property<int>("OrderId");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<int>("Quantity");
 
                     b.HasKey("OrderId", "ProductId");
 

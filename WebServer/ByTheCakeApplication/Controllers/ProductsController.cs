@@ -86,9 +86,9 @@
 
             var shoppingCart = request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
 
-            if (shoppingCart.ProductIds.Any())
+            if (shoppingCart.Products.Any())
             {
-                var totalProducts = shoppingCart.ProductIds.Count;
+                var totalProducts = shoppingCart.Products.Values.Sum();
                 var productsText = totalProducts != 1 ? "products" : "product";
 
                 this.ViewData["showCart"] = "block";

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WebServer.ByTheCakeApplication.Services
+﻿namespace WebServer.ByTheCakeApplication.Services
 {
     using System.Linq;
     using Data;
@@ -74,16 +72,17 @@ namespace WebServer.ByTheCakeApplication.Services
             }
         }
 
-        public IEnumerable<ProductInCartViewModel> FindProductsInCart(IEnumerable<int> productsIds)
+        public IEnumerable<ProductInCartViewModel> FindProductsInCart(Dictionary<int,int> products)
         {
             using (var db = new ByTheCakeDbContext())
             {
                 return db.Products
-                    .Where(p => productsIds.Contains(p.Id))
+                    .Where(p => products.Keys.Contains(p.Id))
                     .Select(p => new ProductInCartViewModel
                     {
                         Name = p.Name,
-                        Price = p.Price
+                        Price = p.Price,
+                        Quantity = products[p.Id]
                     }).ToList();
             }
         }

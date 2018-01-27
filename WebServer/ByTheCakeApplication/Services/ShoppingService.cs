@@ -1,15 +1,15 @@
 ﻿namespace WebServer.ByTheCakeApplication.Services
 {
+    using System.Linq;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Data.Models;
     using Data;
     using Interfaces;
 
     public class ShoppingService : IShoppingService
     {
-        public void CreateOrder(int userId, IEnumerable<int> productIds)
+        public void CreateOrder(int userId, Dictionary<int,int> products)
         {
             using (var db = new ByTheCakeDbContext())
             {
@@ -17,9 +17,10 @@
                 {
                     UserId = userId,
                     CreationTime = DateTime.UtcNow,
-                    Products = productIds.Select(id => new OrderProduct
+                    Products = products.Keys.Select(id => new OrderProduct
                     {
-                        ProductId = id
+                        ProductId = id,
+                        Quantity = products[id]
                     }).ToList()
                 };
 

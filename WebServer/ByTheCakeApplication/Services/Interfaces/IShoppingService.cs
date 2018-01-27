@@ -4,6 +4,6 @@
 
     public interface IShoppingService
     {
-        void CreateOrder(int userId, IEnumerable<int> productIds);
+        void CreateOrder(int userId, Dictionary<int,int> products);
     }
 }

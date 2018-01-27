@@ -5,6 +5,7 @@
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.EntityFrameworkCore.Metadata;
     using System;
+    using WebServer.ByTheCakeApplication.Data;
 
     [DbContext(typeof(ByTheCakeDbContext))]
     partial class ByTheCakeDbContextModelSnapshot : ModelSnapshot
@@ -37,6 +38,8 @@
                     b.Property<int>("OrderId");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<int>("Quantity");
 
                     b.HasKey("OrderId", "ProductId");
 

@@ -6,8 +6,8 @@
     {
         public const string SessionKey = "%^Current_Shopping_Cart^%";
 
-        public List<int> ProductIds { get; private set; } = new List<int>();
+        public Dictionary<int,int> Products { get; private set; } = new Dictionary<int, int>();
 
-        public void Clear() => this.ProductIds.Clear();
+        public void Clear() => this.Products.Clear();
     }
 }
