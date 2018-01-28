@@ -1,14 +1,13 @@
-﻿using WebServer.Server.Common;
-using WebServer.Server.Handlers;
-using WebServer.Server.Http;
-using WebServer.Server.Routing.Contracts;
-
-namespace WebServer.Server
+﻿namespace WebServer.Server
 {
     using System;
     using System.Net.Sockets;
     using System.Text;
     using System.Threading.Tasks;
+    using Common;
+    using Handlers;
+    using Http;
+    using Routing.Contracts;
 
     public class ConnectionHandler
     {

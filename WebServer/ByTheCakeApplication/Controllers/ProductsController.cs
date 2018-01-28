@@ -107,7 +107,7 @@
                 return new NotFoundResponse();
             }
 
-            this.ViewData["productName"] = product.Name;
+            this.ViewData["name"] = product.Name;
             this.ViewData["price"] = product.Price.ToString("f2");
             this.ViewData["imageUrl"] = product.ImageUrl;
 

@@ -1,5 +1,6 @@
 ﻿namespace WebServer.ByTheCakeApplication.Controllers
 {
+    using System;
     using System.Linq;
     using Server.Http.Contracts;
     using Infrastructure;
@@ -100,6 +101,60 @@
             shoppingCart.Clear();
 
             return this.FileViewResponse(@"shopping\finishOrder");
+        }
+
+        public IHttpResponse ShowOrders(IHttpRequest request)
+        {
+            var username = request.Session.Get<string>(SessionStore.CurrentUserKey);
+            var orders = this.shopping.GetUserOrders(username);
+
+            if (!orders.Any())
+            {
+                this.ViewData["showResult"] = "none";
+                this.AddError("You don't have any orders!");
+            }
+            else
+            {
+                var result = String.Empty;
+
+                foreach (var order in orders)
+                {
+                    result += $@"<tr><td><a href=""/orderDetails/{order.Id}"">{order.Id}</a></td><td>{order.CreatedOn.ToShortDateString()}</td><td>{order.Sum:f2}</td></tr>";
+                }
+
+                this.ViewData["showResult"] = "block";
+                this.ViewData["result"] = result;
+            }
+
+            return this.FileViewResponse(@"shopping\orders");
+        }
+
+        public IHttpResponse OrderDetails(int orderId)
+        {
+            var productsFromOrder = this.shopping.GetOrderProducts(orderId);
+
+            if (productsFromOrder == null)
+            {
+                this.ViewData["showResult"] = "none";
+                this.AddError($"Order with id - {orderId} doesn't exist.");
+            }
+            else
+            {
+                var result = String.Empty;
+                var creationDate = this.shopping.GetOrderCreationDate(orderId);
+
+                foreach (var product in productsFromOrder)
+                {
+                    result += $@"<tr><td><a href=""/cakes/{product.Id}"">{product.Name}</a></td><td>{product.Price}</td><td>{product.Quantity}</td><td>{product.Price*product.Quantity}</td></tr>";
+                }
+
+                this.ViewData["showResult"] = "block";
+                this.ViewData["orderId"] = orderId.ToString();
+                this.ViewData["products"] = result;
+                this.ViewData["creationDate"] = creationDate.ToShortDateString();
+            }
+
+            return this.FileViewResponse(@"shopping\orderDetails");
         }
     }
 }

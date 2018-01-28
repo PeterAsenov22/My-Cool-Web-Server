@@ -1,14 +1,13 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using WebServer.Server.Contracts;
-using WebServer.Server.Routing;
-using WebServer.Server.Routing.Contracts;
-
-namespace WebServer.Server
+﻿namespace WebServer.Server
 {
+    using System;
+    using System.Net;
+    using System.Net.Sockets;
+    using System.Threading.Tasks;
+    using Contracts;
+    using Routing;
+    using Routing.Contracts;
+
     public class WebServer : IRunnable
     {
         private const string localHostIPAddress = "127.0.0.1";

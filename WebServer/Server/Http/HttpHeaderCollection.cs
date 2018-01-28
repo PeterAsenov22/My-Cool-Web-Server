@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Linq;
-using System.Text;
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
     using System;
     using System.Collections.Generic;
     using Contracts;
     using Common;
+    using System.Collections;
+    using System.Text;
 
     public class HttpHeaderCollection : IHttpHeaderCollection
     {

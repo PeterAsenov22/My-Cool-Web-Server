@@ -1,8 +1,7 @@
-﻿using WebServer.Server.Http.Contracts;
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
     using System.Collections.Concurrent;
+    using Contracts;
 
     public static class SessionStore
     {

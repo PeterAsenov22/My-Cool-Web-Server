@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using WebServer.Server.Enums;
-using WebServer.Server.Routing.Contracts;
-
-namespace WebServer.Server.Routing
+﻿namespace WebServer.Server.Routing
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using Enums;
+    using Contracts;
+
     public class ServerRouteConfig : IServerRouteConfig
     {
         private readonly IDictionary<HttpRequestMethod, IDictionary<string, IRoutingContext>> routes;

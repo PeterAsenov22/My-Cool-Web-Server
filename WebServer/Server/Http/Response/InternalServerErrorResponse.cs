@@ -1,9 +1,8 @@
-﻿using WebServer.Server.Common;
-
-namespace WebServer.Server.Http.Response
+﻿namespace WebServer.Server.Http.Response
 {
     using System;
     using Enums;
+    using Common;
 
     public class InternalServerErrorResponse : ViewResponse
     {

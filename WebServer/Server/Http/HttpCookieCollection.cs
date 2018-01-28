@@ -1,8 +1,7 @@
-﻿using WebServer.Server.Common;
-using WebServer.Server.Http.Contracts;
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
+    using Common;
+    using Contracts;
     using System;
     using System.Collections.Generic;
     using System.Collections;

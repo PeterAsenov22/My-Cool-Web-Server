@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace WebServer.Server
+﻿namespace WebServer.Server
 {
+    using System.Collections.Generic;
+
     public class Model
     {
         private readonly Dictionary<string, object> objects;

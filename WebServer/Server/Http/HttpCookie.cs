@@ -1,8 +1,8 @@
-﻿using System;
-using WebServer.Server.Common;
-
-namespace WebServer.Server.Http
+﻿namespace WebServer.Server.Http
 {
+    using System;
+    using Common;
+
     public class HttpCookie
     {
         //expires is in days

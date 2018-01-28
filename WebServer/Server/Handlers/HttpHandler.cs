@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using WebServer.Server.Http;
-
-namespace WebServer.Server.Handlers
+﻿namespace WebServer.Server.Handlers
 {
+    using System;
+    using System.Linq;
+    using Http;
     using Contracts;
     using Http.Contracts;
     using System.Text.RegularExpressions;

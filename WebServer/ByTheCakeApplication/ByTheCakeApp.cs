@@ -49,6 +49,8 @@
             appRouteConfig.Post("/logout", request => new AccountController().Logout(request));
             appRouteConfig.Get("/profile", request => new AccountController().Profile(request));
             appRouteConfig.Get("/cakes/{(?<id>[0-9]+)}", request => new ProductsController().Details(int.Parse(request.UrlParameters["id"])));
+            appRouteConfig.Get("/orders", request => new ShoppingController().ShowOrders(request));
+            appRouteConfig.Get("/orderDetails/{(?<id>[0-9]+)}", request => new ShoppingController().OrderDetails(int.Parse(request.UrlParameters["id"])));
         }
     }
 }
