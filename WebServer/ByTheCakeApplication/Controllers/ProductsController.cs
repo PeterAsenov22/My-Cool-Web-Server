@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using Infrastructure;
     using Server.Http.Contracts;
     using ViewModels;
     using Services;
@@ -10,7 +9,7 @@
     using ViewModels.Products;
     using Server.Http.Response;
 
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
         private const string AddView = @"products\add";
 

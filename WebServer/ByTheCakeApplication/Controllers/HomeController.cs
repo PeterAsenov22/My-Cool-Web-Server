@@ -1,9 +1,8 @@
 ﻿namespace WebServer.ByTheCakeApplication.Controllers
 {
     using Server.Http.Contracts;
-    using Infrastructure;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IHttpResponse Index() => this.FileViewResponse(@"home\index");
 

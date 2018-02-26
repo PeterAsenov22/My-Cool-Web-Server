@@ -1,6 +1,4 @@
-﻿using WebServer.Server.Http.Contracts;
-
-namespace WebServer.Server.Routing
+﻿namespace WebServer.Server.Routing
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +6,7 @@ namespace WebServer.Server.Routing
     using Enums;
     using Handlers;
     using Contracts;
+    using Http.Contracts;
 
     public class AppRouteConfig : IAppRoutingConfig
     {
@@ -15,6 +14,8 @@ namespace WebServer.Server.Routing
 
         public AppRouteConfig()
         {
+            this.AnonymousPaths = new List<string>();
+
             this.routes = new Dictionary<HttpRequestMethod, Dictionary<string, RequestHandler>>();
 
             foreach (HttpRequestMethod requestMethod in Enum.GetValues(typeof(HttpRequestMethod)).Cast<HttpRequestMethod>())
@@ -24,6 +25,8 @@ namespace WebServer.Server.Routing
         }
 
         public IReadOnlyDictionary<HttpRequestMethod, Dictionary<string, RequestHandler>> Routes => this.routes;
+
+        public ICollection<string> AnonymousPaths { get; private set; }
 
         public void Get(string route, Func<IHttpRequest, IHttpResponse> handler)
         {

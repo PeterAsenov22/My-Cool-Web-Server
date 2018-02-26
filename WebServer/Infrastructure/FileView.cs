@@ -1,4 +1,4 @@
-﻿namespace WebServer.ByTheCakeApplication.Views
+﻿namespace WebServer.Infrastructure
 {
     using Server.Contracts;
 

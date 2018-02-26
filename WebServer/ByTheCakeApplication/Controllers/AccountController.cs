@@ -2,7 +2,6 @@
 {
     using System;
     using Server.Http;
-    using Infrastructure;
     using Server.Http.Contracts;
     using Server.Http.Response;
     using ViewModels;
@@ -10,7 +9,7 @@
     using Services;
     using Services.Interfaces;
 
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private const string RegisterView = @"account\register";
         private const string LoginView = @"account\login";

@@ -25,8 +25,8 @@
         {
             try
             {
-                //Check if user is authenticated
-                var anonymousPaths = new[] {"/login", "/register"};
+                //Check if user is authenticated                
+                var anonymousPaths = this.serverRouteConfig.AnonymousPaths;
                
                 if (!anonymousPaths.Contains(httpContext.Request.Path) && !httpContext.Request.Session.Contains(SessionStore.CurrentUserKey))
                 {

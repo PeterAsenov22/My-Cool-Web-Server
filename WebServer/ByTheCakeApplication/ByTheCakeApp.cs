@@ -20,6 +20,9 @@
 
         public void Configure(IAppRoutingConfig appRouteConfig)
         {
+            appRouteConfig.AnonymousPaths.Add("/login");
+            appRouteConfig.AnonymousPaths.Add("/register");
+
             appRouteConfig.Get("/", request => new HomeController().Index());
             appRouteConfig.Get("/about", request => new HomeController().About());
             appRouteConfig.Get("/add", request => new ProductsController().Add());

@@ -3,7 +3,7 @@
     using Server.Contracts;
     using Server;
     using Server.Routing;
-    using ByTheCakeApplication;
+    using GameStoreApplication;
 
     public class Launcher : IRunnable
     {
@@ -16,7 +16,7 @@
 
         public void Run()
         {
-            var mainApplication = new ByTheCakeApp();
+            var mainApplication = new GameStoreApp();
             mainApplication.InitializeDatabase();
 
             var appRouteConfig = new AppRouteConfig();

@@ -3,14 +3,13 @@
     using System;
     using System.Linq;
     using Server.Http.Contracts;
-    using Infrastructure;
     using ViewModels;
     using Server.Http.Response;
     using Services;
     using Services.Interfaces;
     using Server.Http;
 
-    public class ShoppingController : Controller
+    public class ShoppingController : BaseController
     {
         private readonly IProductService products;
         private readonly IUserService users;
